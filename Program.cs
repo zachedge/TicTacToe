@@ -25,6 +25,7 @@ for (int i = 0; i < 9; i++)
     int row, col;
     bool validInput = false;
 
+    // Validate the input
     do
     {
         Console.Write("Row: ");
