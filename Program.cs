@@ -18,20 +18,32 @@ for(int row = 0; row < 3; row++)
 // Ask each player in turn for their choice and update the game board array
 for (int i = 0; i < 9; i++)
 {
-    if (i % 2 == 0)
+    int playerNumber = (i % 2 == 0) ? 1 : 2;
+
+    Console.WriteLine($"Player {playerNumber}, please enter the row and column where you would like to place your {(playerNumber == 1 ? "X" : "O")}.");
+
+    int row, col;
+    bool validInput = false;
+
+    do
     {
-        Console.WriteLine("Player 1, please enter the row and column where you would like to place your X.");
-        int row = Convert.ToInt32(Console.ReadLine());
-        int col = Convert.ToInt32(Console.ReadLine());
-        gameBoard[row, col] = 1;
-    }
-    else
-    {
-        Console.WriteLine("Player 2, please enter the row and column where you would like to place your O.");
-        int row = Convert.ToInt32(Console.ReadLine());
-        int col = Convert.ToInt32(Console.ReadLine());
-        gameBoard[row, col] = 2;
-    }
+        Console.Write("Row: ");
+        row = Convert.ToInt32(Console.ReadLine());
+
+        Console.Write("Column: ");
+        col = Convert.ToInt32(Console.ReadLine());
+
+        if (row >= 0 && row < 3 && col >= 0 && col < 3 && gameBoard[row, col] == 0)
+        {
+            validInput = true;
+        }
+        else
+        {
+            Console.WriteLine("Invalid input. Please choose an empty cell within the valid range.");
+        }
+    } while (!validInput);
+
+    gameBoard[row, col] = playerNumber;
 }
 
 // Print the board by calling the method in the supporting class
