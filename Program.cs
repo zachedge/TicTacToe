@@ -1,4 +1,8 @@
-﻿//The “Driver” class (the Program.cs class with the main method where the program begins) will:
+﻿using TicTacToe;
+
+// Initialize instance of TicTacToeTools
+TicTacToeTools tools = new TicTacToeTools();
+//The “Driver” class (the Program.cs class with the main method where the program begins) will:
 
 // Welcome the user to the game
 Console.WriteLine("Welcome to Tic Tac Toe!");
@@ -49,7 +53,7 @@ for (int i = 0; i < 9; i++)
 
 // Print the board by calling the method in the supporting class
 Console.WriteLine("Here is the current game board:");
-KimberlysMethod(gameBoard);
+tools.PrintBoard(gameBoard);
 
 
 // Check for a winner by calling the method in the supporting class, and notify the players when a win has occurred and which player won the game
