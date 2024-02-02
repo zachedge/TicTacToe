@@ -33,25 +33,35 @@ do
 
     Console.WriteLine($"Player {playerNumber}, please enter the row and column where you would like to place your {(playerNumber == 1 ? "X" : "O")}.");
 
-    int row, col;
+    int row, col = 0;
     bool validInput = false;
 
     // Validate the input
     do
     {
         Console.Write("Row: ");
-        row = Convert.ToInt32(Console.ReadLine()) - 1;
+        string rowInput = Console.ReadLine();
 
         Console.Write("Column: ");
-        col = Convert.ToInt32(Console.ReadLine()) - 1;
+        string colInput = Console.ReadLine();
 
-        if (row >= 0 && row < 3 && col >= 0 && col < 3 && gameBoard[row, col] == 0)
+        if (int.TryParse(rowInput, out row) && int.TryParse(colInput, out col))
         {
-            validInput = true;
+            row--; // Adjust to match array indexing
+            col--;
+
+            if (row >= 0 && row < 3 && col >= 0 && col < 3 && gameBoard[row, col] == 0)
+            {
+                validInput = true;
+            }
+            else
+            {
+                Console.WriteLine("Invalid input. Please choose an empty cell within the valid range.");
+            }
         }
         else
         {
-            Console.WriteLine("Invalid input. Please choose an empty cell within the valid range.");
+            Console.WriteLine("Invalid input. Please enter valid numbers for row and column.");
         }
     } while (!validInput);
 
@@ -62,17 +72,17 @@ do
     tools.PrintBoard(gameBoard);
 
     // Check for a winner by calling the method in the supporting class, and notify the players when a win has occurred and which player won the game
-    if (tools.EvalutateWin(gameBoard) == 1)
+    if (tools.EvaluateWin(gameBoard) == 1)
     {
         Console.WriteLine("Player 1 wins!");
         gameOver = true;
     }
-    else if (tools.EvalutateWin(gameBoard) == 2)
+    else if (tools.EvaluateWin(gameBoard) == 2)
     {
         Console.WriteLine("Player 2 wins!");
         gameOver = true;
     }
-    else if (tools.EvalutateWin(gameBoard) == 0 && turn == 8)
+    else if (tools.EvaluateWin(gameBoard) == 0 && turn == 8)
     {
         Console.WriteLine("It's a tie!");
         gameOver = true;

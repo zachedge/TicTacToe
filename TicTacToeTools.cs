@@ -38,7 +38,7 @@ namespace TicTacToe
         }
 
 
-        public int EvalutateWin(int[,] boardArray)
+        public int EvaluateWin(int[,] boardArray)
         {
             int result = 0;
             // Check rows, columns, and diagonals for a winner
