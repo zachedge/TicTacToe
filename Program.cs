@@ -10,6 +10,12 @@ Console.WriteLine("Welcome to Tic Tac Toe!");
 // Create a game board array to store the players’ choices
 int[,] gameBoard = new int[3, 3];
 
+// Create a variable to know when the game is over
+bool gameOver = false;
+
+// Initialize the turns
+int turn = 0;
+
 // Create a for loop to store the players’ choices
 for(int row = 0; row < 3; row++)
 {
@@ -19,10 +25,11 @@ for(int row = 0; row < 3; row++)
     }
 }
 
-// Ask each player in turn for their choice and update the game board array
-for (int i = 0; i < 9; i++)
+
+do
 {
-    int playerNumber = (i % 2 == 0) ? 1 : 2;
+    // Ask each player in turn for their choice and update the game board array
+    int playerNumber = (turn % 2 == 0) ? 1 : 2;
 
     Console.WriteLine($"Player {playerNumber}, please enter the row and column where you would like to place your {(playerNumber == 1 ? "X" : "O")}.");
 
@@ -33,10 +40,10 @@ for (int i = 0; i < 9; i++)
     do
     {
         Console.Write("Row: ");
-        row = Convert.ToInt32(Console.ReadLine());
+        row = Convert.ToInt32(Console.ReadLine()) - 1;
 
         Console.Write("Column: ");
-        col = Convert.ToInt32(Console.ReadLine());
+        col = Convert.ToInt32(Console.ReadLine()) - 1;
 
         if (row >= 0 && row < 3 && col >= 0 && col < 3 && gameBoard[row, col] == 0)
         {
@@ -48,6 +55,8 @@ for (int i = 0; i < 9; i++)
         }
     } while (!validInput);
 
+    gameBoard[row, col] = playerNumber;
+
     // Print the board by calling the method in the supporting class
     Console.WriteLine("Here is the current game board:");
     tools.PrintBoard(gameBoard);
@@ -56,15 +65,18 @@ for (int i = 0; i < 9; i++)
     if (tools.EvalutateWin(gameBoard) == 1)
     {
         Console.WriteLine("Player 1 wins!");
+        gameOver = true;
     }
     else if (tools.EvalutateWin(gameBoard) == 2)
     {
         Console.WriteLine("Player 2 wins!");
+        gameOver = true;
     }
-    else if (tools.EvalutateWin(gameBoard) == 0 && i == 8)
+    else if (tools.EvalutateWin(gameBoard) == 0 && turn == 8)
     {
         Console.WriteLine("It's a tie!");
+        gameOver = true;
     }
 
-    gameBoard[row, col] = playerNumber;
-}
+    turn++;
+} while (!gameOver);

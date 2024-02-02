@@ -8,6 +8,7 @@ namespace TicTacToe
 {
     internal class TicTacToeTools
     {
+        // Method to print the game board
         public void PrintBoard(int[,] boardArray)
         {
             for (int i = 0; i < 3; i++)
@@ -16,19 +17,20 @@ namespace TicTacToe
                 {
                     char mark = ' ';
 
+                    // Check if the cell is empty, or if it contains a 1 or 2
                     if (boardArray[i, y] == 0)
                     {
-                        mark = '_';
+                        mark = '_'; // Empty cell
                     }
                     else if (boardArray[i, y] == 1)
                     {
-                        mark = 'X';
+                        mark = 'X'; // Player X
                     }
                     else if (boardArray[i, y] == 2)
                     {
-                        mark = 'O';
+                        mark = 'O'; // Player O
                     }
-
+                    // Print the cell
                     Console.Write(mark + " ");
                 }
                 Console.WriteLine();
