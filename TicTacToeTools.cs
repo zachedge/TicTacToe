@@ -40,7 +40,7 @@ namespace TicTacToe
 
         }
 
-        pubic int evalutateWin(int[,] boardArray)
+        public int evalutateWin(int[,] boardArray)
         {
             // Check rows, columns, and diagonals for a winner
             for (int i = 0; i < 3; i++)
