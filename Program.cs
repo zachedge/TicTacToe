@@ -53,15 +53,15 @@ for (int i = 0; i < 9; i++)
     tools.PrintBoard(gameBoard);
 
     // Check for a winner by calling the method in the supporting class, and notify the players when a win has occurred and which player won the game
-    if (CheckForWinner(gameBoard) == 1)
+    if (tools.EvalutateWin(gameBoard) == 1)
     {
         Console.WriteLine("Player 1 wins!");
     }
-    else if (CheckForWinner(gameBoard) == 2)
+    else if (tools.EvalutateWin(gameBoard) == 2)
     {
         Console.WriteLine("Player 2 wins!");
     }
-    else
+    else if (tools.EvalutateWin(gameBoard) == 0 && i == 8)
     {
         Console.WriteLine("It's a tie!");
     }
