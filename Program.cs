@@ -48,25 +48,23 @@ for (int i = 0; i < 9; i++)
         }
     } while (!validInput);
 
+    // Print the board by calling the method in the supporting class
+    Console.WriteLine("Here is the current game board:");
+    tools.PrintBoard(gameBoard);
+
+    // Check for a winner by calling the method in the supporting class, and notify the players when a win has occurred and which player won the game
+    if (CheckForWinner(gameBoard) == 1)
+    {
+        Console.WriteLine("Player 1 wins!");
+    }
+    else if (CheckForWinner(gameBoard) == 2)
+    {
+        Console.WriteLine("Player 2 wins!");
+    }
+    else
+    {
+        Console.WriteLine("It's a tie!");
+    }
+
     gameBoard[row, col] = playerNumber;
 }
-
-// Print the board by calling the method in the supporting class
-Console.WriteLine("Here is the current game board:");
-tools.PrintBoard(gameBoard);
-
-
-// Check for a winner by calling the method in the supporting class, and notify the players when a win has occurred and which player won the game
-if (CheckForWinner(gameBoard) == 1)
-{
-    Console.WriteLine("Player 1 wins!");
-}
-else if (CheckForWinner(gameBoard) == 2)
-{
-    Console.WriteLine("Player 2 wins!");
-}
-else
-{
-    Console.WriteLine("It's a tie!");
-}
-
